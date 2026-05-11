@@ -1,8 +1,8 @@
 //! Application state for the `DeepSeek` TUI.
 
 use std::collections::{HashMap, HashSet, VecDeque};
-use std::path::{Path, PathBuf};
-use std::time::{Duration, Instant};
+use std::path::PathBuf;
+use std::time::Instant;
 
 use ratatui::layout::Rect;
 use serde_json::Value;
@@ -10,32 +10,25 @@ use thiserror::Error;
 
 use crate::artifacts::ArtifactRecord;
 use crate::client::PromptInspection;
-use crate::compaction::CompactionConfig;
-use crate::config::{
-    ApiProvider, Config, DEFAULT_TEXT_MODEL, SavedCredential, has_api_key, save_api_key,
-};
-use crate::config_ui::ConfigUiMode;
+use crate::config::ApiProvider;
 use crate::core::coherence::CoherenceState;
 use crate::cycle_manager::{CycleBriefing, CycleConfig};
-use crate::hooks::{HookContext, HookEvent, HookExecutor, HookResult};
-use crate::localization::{Locale, MessageId, resolve_locale, tr};
-use crate::models::{Message, SystemPrompt, compaction_threshold_for_model_and_effort};
-use crate::palette::{self, UiTheme};
-use crate::pricing::{CostCurrency, CostEstimate};
+use crate::hooks::HookExecutor;
+use crate::localization::Locale;
+use crate::models::{Message, SystemPrompt};
+use crate::palette::UiTheme;
+use crate::pricing::CostCurrency;
 use crate::session_manager::SessionContextReference;
-use crate::settings::Settings;
-use crate::tools::plan::{SharedPlanState, new_shared_plan_state};
-use crate::tools::shell::new_shared_shell_manager;
+use crate::tools::plan::SharedPlanState;
 use crate::tools::spec::RuntimeToolServices;
 use crate::tools::subagent::SubAgentResult;
-use crate::tools::todo::{SharedTodoList, new_shared_todo_list};
+use crate::tools::todo::SharedTodoList;
 use crate::tui::active_cell::ActiveCell;
 use crate::tui::approval::ApprovalMode;
-use crate::tui::clipboard::{ClipboardContent, ClipboardHandler};
-use crate::tui::file_mention::ContextReference;
-use crate::tui::history::{HistoryCell, TranscriptRenderOptions};
-use crate::tui::paste_burst::{FlushResult, PasteBurst};
-use crate::tui::scrolling::{MouseScrollState, TranscriptLineMeta, TranscriptScroll};
+use crate::tui::clipboard::ClipboardHandler;
+use crate::tui::history::HistoryCell;
+use crate::tui::paste_burst::PasteBurst;
+use crate::tui::scrolling::{MouseScrollState, TranscriptScroll};
 use crate::tui::selection::{SelectionAutoscroll, TranscriptSelection};
 use crate::tui::streaming::StreamingState;
 use crate::tui::transcript::TranscriptViewCache;

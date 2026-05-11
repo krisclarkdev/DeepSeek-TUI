@@ -3,5 +3,4 @@ pub mod mutators;
 pub mod actions;
 
 pub use state::*;
-pub use mutators::*;
 pub use actions::*;

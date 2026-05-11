@@ -1,22 +1,8 @@
-use anyhow::Result;
-use regex::Regex;
-use std::collections::{BTreeSet, HashMap, HashSet};
-use std::fmt::Write;
-use std::path::{Path, PathBuf};
-use std::sync::OnceLock;
-use std::time::Duration;
 
-use crate::client::DeepSeekClient;
-use crate::config::DEFAULT_TEXT_MODEL;
-use crate::llm_client::LlmClient;
-use crate::logging;
 use crate::models::{
-    CacheControl, ContentBlock, Message, MessageRequest, SystemBlock, SystemPrompt,
-    context_window_for_model,
+    ContentBlock, Message, SystemPrompt,
 };
 
-use super::*;
-use crate::compaction::*;
 
 pub(crate) fn estimate_tokens_for_message(message: &Message, include_thinking: bool) -> usize {
     message

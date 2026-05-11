@@ -1,13 +1,9 @@
 use anyhow::Result;
-use regex::Regex;
-use std::collections::{BTreeSet, HashMap, HashSet};
 use std::fmt::Write;
-use std::path::{Path, PathBuf};
-use std::sync::OnceLock;
+use std::path::Path;
 use std::time::Duration;
 
 use crate::client::DeepSeekClient;
-use crate::config::DEFAULT_TEXT_MODEL;
 use crate::llm_client::LlmClient;
 use crate::logging;
 use crate::models::{
@@ -16,7 +12,6 @@ use crate::models::{
 };
 
 use super::*;
-use crate::compaction::*;
 
 /// Result of a compaction operation with metadata.
 #[derive(Debug)]

@@ -11,7 +11,7 @@ pub mod summary;
 mod tests;
 
 pub use estimation::*;
-pub use extraction::*;
+pub(crate) use extraction::*;
 pub use planning::*;
 pub use pruning::*;
 pub use rules::*;

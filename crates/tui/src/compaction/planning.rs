@@ -1,22 +1,13 @@
-use anyhow::Result;
-use regex::Regex;
 use std::collections::{BTreeSet, HashMap, HashSet};
 use std::fmt::Write;
-use std::path::{Path, PathBuf};
-use std::sync::OnceLock;
-use std::time::Duration;
+use std::path::Path;
 
-use crate::client::DeepSeekClient;
-use crate::config::DEFAULT_TEXT_MODEL;
-use crate::llm_client::LlmClient;
 use crate::logging;
 use crate::models::{
-    CacheControl, ContentBlock, Message, MessageRequest, SystemBlock, SystemPrompt,
-    context_window_for_model,
+    ContentBlock, Message,
 };
 
 use super::*;
-use crate::compaction::*;
 
 #[derive(Debug, Clone, Default)]
 pub struct CompactionPlan {
